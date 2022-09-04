@@ -5,7 +5,7 @@ description = "My entry for PyWeek 34"
 authors = ["Patrick Brennan <52932656+AM2i9@users.noreply.github.com>"]
 license = "GPL-3.0-or-later"
 readme = "README.md"
-packages = [{include = "pyweek_34"}]
+packages = [{include = "game"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
