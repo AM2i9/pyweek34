@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "pyweek-34"
+version = "0.1.0"
+description = "My entry for PyWeek 34"
+authors = ["Patrick Brennan <52932656+AM2i9@users.noreply.github.com>"]
+license = "GPL-3.0-or-later"
+readme = "README.md"
+packages = [{include = "pyweek_34"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+arcade = "^2.6.15"
+
+[tool.poetry.group.dev.dependencies]
+black = "^22.8.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
