@@ -7,7 +7,7 @@ import game
 
 class Lemming(arcade.Sprite):
     def __init__(self, game):
-        super().__init__(scale=3)
+        super().__init__(scale=2)
 
         self.game = game
 
@@ -33,8 +33,23 @@ class Lemming(arcade.Sprite):
     
     def set_path(self, path):
         self.path = path
-        self.path_iter = iter(path)
+        next_closest = self.get_path_from_next_closest_point()
+        self.path_iter = iter(next_closest)
         self._current_path_point = next(self.path_iter)
+    
+    def get_path_from_next_closest_point(self):
+        cur_min = 1000000000000
+        min_index = 0
+        for i, point in enumerate(self.path):
+            distance = math.sqrt(
+                (self.center_x - point[0]) ** 2
+                + (self.center_y - point[1]) ** 2
+            )
+            if distance < cur_min:
+                cur_min = distance
+                min_index = i
+
+        return self.path[min_index:]
 
     def update(self):
         if self._current_path_point:

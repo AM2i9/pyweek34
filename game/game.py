@@ -35,8 +35,8 @@ class Game(arcade.Window):
 
         self.lemmings.draw(pixelated=True)
 
-        # if self.lem_path:
-        #     arcade.draw_line_strip(self.lem_path, arcade.color.RED, 2)
+        if self.lem_path:
+            arcade.draw_line_strip(self.lem_path, arcade.color.RED, 2)
     
     def on_mouse_press(self, x, y, button, key_modifiers):
         if button == 1:

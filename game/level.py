@@ -51,6 +51,6 @@ class Level:
         return arcade.astar_calculate_path(
             self.start_point,
             self.end_point,
-            arcade.AStarBarrierList(lem, self.walls, 32, -32, game.GAME_WIDTH + 32, -32, game.GAME_HEIGHT +32),
+            arcade.AStarBarrierList(lem, self.walls, 16, 0, game.GAME_WIDTH, 0, game.GAME_HEIGHT),
             diagonal_movement=True,
         )

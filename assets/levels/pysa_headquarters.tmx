@@ -38,10 +38,10 @@
   <object id="45" name="electric_water" x="75.8333" y="413.167" width="78" height="97.5"/>
  </objectgroup>
  <objectgroup color="#aa557f" id="14" name="points">
-  <object id="54" name="start" x="129.625" y="-27.375">
+  <object id="54" name="start" x="111.625" y="6.9375">
    <point/>
   </object>
-  <object id="55" name="end" x="-30" y="588.917">
+  <object id="55" name="end" x="8" y="588.917">
    <point/>
   </object>
  </objectgroup>
