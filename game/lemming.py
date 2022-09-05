@@ -30,43 +30,37 @@ class Lemming(arcade.Sprite):
 
     def set_destination(self, dest: Tuple[int, int]):
         self.dest = dest
+    
+    def set_path(self, path):
+        self.path = path
+        self.path_iter = iter(path)
+        self._current_path_point = next(self.path_iter)
 
     def update(self):
-        pass
+        if self._current_path_point:
+            angle = math.atan2(
+                self._current_path_point[1] - self.center_y,
+                self._current_path_point[0] - self.center_x,
+            )
 
-    # if self.dest:
-    #     self.path = arcade.astar_calculate_path(
-    #         self.position,
-    #         self.dest,
-    #         arcade.AStarBarrierList(self, self.game.level.walls, 32, 0, game.GAME_WIDTH, 0, game.GAME_HEIGHT),
-    #         diagonal_movement=False,
-    #     )
-    #     if self.path is not None:
-    #         self._current_path_point = self.path[0]
-    #     else:
-    #         return
+            distance = math.sqrt(
+                (self.center_x - self._current_path_point[0]) ** 2
+                + (self.center_y - self._current_path_point[1]) ** 2
+            )
 
-    # angle = math.atan2(
-    #     self._current_path_point[1] - self.center_y,
-    #     self._current_path_point[0] - self.center_x,
-    # )
+            speed = min(self.speed, distance)
 
-    # distance = math.sqrt(
-    #     (self.center_x - self._current_path_point[0]) ** 2
-    #     + (self.center_y - self._current_path_point[1]) ** 2
-    # )
+            self.center_x += math.cos(angle) * speed
+            self.center_y += math.sin(angle) * speed
 
-    # speed = min(self.speed, distance)
+            distance = math.sqrt(
+                (self.center_x - self._current_path_point[0]) ** 2
+                + (self.center_y - self._current_path_point[1]) ** 2
+            )
 
-    # self.center_x += math.cos(angle) * speed
-    # self.center_y += math.sin(angle) * speed
-
-    # distance = math.sqrt(
-    #     (self.center_x - self._current_path_point[0]) ** 2
-    #     + (self.center_y - self._current_path_point[1]) ** 2
-    # )
-
-    # if distance <= self.speed:
-    #     self._current_path_point = next(self.path_iter, None)
-    #     if self._current_path_point is None:
-    #         self.path = None
+            if distance <= self.speed:
+                self._current_path_point = next(self.path_iter, None)
+                if self._current_path_point is None:
+                    self.path = None
+                    self.path_iter = None
+                    self.remove_from_sprite_lists()

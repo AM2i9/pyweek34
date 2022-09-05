@@ -15,11 +15,16 @@ class Game(arcade.Window):
         self.lemmings = None
         self.map = None
 
+        self.update_path = False
+        self.lem_time = 0
+
     def setup(self):
 
         self.lemmings = arcade.SpriteList()
 
         self.level = Level("assets/levels/pysa_headquarters.tmx")
+
+        self.lem_path = self.level.get_path_to_endpoint(Lemming(self))
 
     def on_draw(self):
 
@@ -29,8 +34,23 @@ class Game(arcade.Window):
 
         self.lemmings.draw(pixelated=True)
 
+        # if self.lem_path:
+        #     arcade.draw_line_strip(self.lem_path, arcade.color.RED, 2)
+
     def on_update(self, delta_time: float):
+        print(delta_time)
+        if len(self.lemmings) < 100 and self.lem_time > 0.2:
+            new_lem = Lemming(self)
+
+            new_lem.set_position(*self.level.start_point)
+            new_lem.set_path(self.lem_path)
+
+            self.lemmings.append(new_lem)
+            self.lem_time = 0
+        else:
+            self.lem_time += delta_time
 
         self.lemmings.update()
-        self.lemmings.update_animation(delta_time)
+        self.lemmings.update_animation(delta_time)   
+
         self.level.update(delta_time)
