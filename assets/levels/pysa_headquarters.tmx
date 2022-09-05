@@ -3,102 +3,8 @@
  <editorsettings>
   <export target="pysa_headquarters..tmx" format="tmx"/>
  </editorsettings>
- <tileset firstgid="1" name="PySaHQ" tilewidth="64" tileheight="32" tilecount="16" columns="0">
-  <grid orientation="orthogonal" width="1" height="1"/>
-  <tile id="10">
-   <image width="32" height="32" source="../tiles/pysahq/pysa_wall_back.png"/>
-  </tile>
-  <tile id="12">
-   <image width="32" height="32" source="../tiles/pysahq/pysa_wall_front.png"/>
-  </tile>
-  <tile id="16">
-   <image width="32" height="32" source="../tiles/pysahq/pysa_floor_tile.png"/>
-  </tile>
-  <tile id="13">
-   <image width="32" height="32" source="../tiles/pysahq/pysa_wall_left.png"/>
-  </tile>
-  <tile id="14">
-   <image width="32" height="32" source="../tiles/pysahq/pysa_wall_right.png"/>
-  </tile>
-  <tile id="15">
-   <image width="32" height="32" source="../tiles/pysahq/pysa_wall_top.png"/>
-  </tile>
-  <tile id="20">
-   <image width="32" height="32" source="../tiles/pysahq/pysa_wall_top_right_corner.png"/>
-  </tile>
-  <tile id="21">
-   <image width="32" height="32" source="../tiles/pysahq/pysa_wall_bottom_left_corner.png"/>
-  </tile>
-  <tile id="22">
-   <image width="32" height="32" source="../tiles/pysahq/pysa_wall_bottom_right_corner.png"/>
-  </tile>
-  <tile id="23">
-   <image width="32" height="32" source="../tiles/pysahq/pysa_wall_top_left_corner.png"/>
-  </tile>
-  <tile id="24">
-   <image width="32" height="32" source="../tiles/pysahq/pysa_wall_bottom_left_corner_full.png"/>
-  </tile>
-  <tile id="25">
-   <image width="32" height="32" source="../tiles/pysahq/pysa_wall_bottom_right_corner_full.png"/>
-  </tile>
-  <tile id="28">
-   <image width="32" height="32" source="../tiles/pysahq/pysa_wall_top_right_corner_full.png"/>
-  </tile>
-  <tile id="29">
-   <image width="32" height="32" source="../tiles/pysahq/pysa_wall_top_left_corner_full.png"/>
-  </tile>
-  <tile id="30">
-   <image width="64" height="32" source="../tiles/pysahq/rocket_arrow.png"/>
-  </tile>
-  <tile id="32">
-   <image width="32" height="32" source="../tiles/pysahq/dotted_concrete.png"/>
-  </tile>
- </tileset>
- <tileset firstgid="34" name="electric_puddle_1" tilewidth="96" tileheight="192" tilecount="10" columns="0">
-  <grid orientation="orthogonal" width="1" height="1"/>
-  <tile id="13">
-   <image width="96" height="192" source="../tiles/pysahq/electric_puddle_1/electric_puddle100003.png"/>
-   <animation>
-    <frame tileid="4" duration="70"/>
-    <frame tileid="5" duration="70"/>
-    <frame tileid="6" duration="70"/>
-    <frame tileid="7" duration="70"/>
-    <frame tileid="8" duration="70"/>
-    <frame tileid="9" duration="70"/>
-    <frame tileid="10" duration="70"/>
-    <frame tileid="11" duration="70"/>
-    <frame tileid="12" duration="70"/>
-    <frame tileid="13" duration="70"/>
-   </animation>
-  </tile>
-  <tile id="4">
-   <image width="96" height="192" source="../tiles/pysahq/electric_puddle_1/electric_puddle100004.png"/>
-  </tile>
-  <tile id="5">
-   <image width="96" height="192" source="../tiles/pysahq/electric_puddle_1/electric_puddle100005.png"/>
-  </tile>
-  <tile id="6">
-   <image width="96" height="192" source="../tiles/pysahq/electric_puddle_1/electric_puddle100006.png"/>
-  </tile>
-  <tile id="7">
-   <image width="96" height="192" source="../tiles/pysahq/electric_puddle_1/electric_puddle100007.png"/>
-  </tile>
-  <tile id="8">
-   <image width="96" height="192" source="../tiles/pysahq/electric_puddle_1/electric_puddle100008.png"/>
-  </tile>
-  <tile id="9">
-   <image width="96" height="192" source="../tiles/pysahq/electric_puddle_1/electric_puddle100009.png"/>
-  </tile>
-  <tile id="10">
-   <image width="96" height="192" source="../tiles/pysahq/electric_puddle_1/electric_puddle100000.png"/>
-  </tile>
-  <tile id="11">
-   <image width="96" height="192" source="../tiles/pysahq/electric_puddle_1/electric_puddle100001.png"/>
-  </tile>
-  <tile id="12">
-   <image width="96" height="192" source="../tiles/pysahq/electric_puddle_1/electric_puddle100002.png"/>
-  </tile>
- </tileset>
+ <tileset firstgid="1" source="../tiles/PySaHQ.tsx"/>
+ <tileset firstgid="34" source="../tiles/pysahq/electric_puddle_1.tsx"/>
  <layer id="3" name="floor" width="22" height="25">
   <data encoding="csv">
 33,33,17,17,17,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,
@@ -197,5 +103,4 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="13" name="text"/>
 </map>
