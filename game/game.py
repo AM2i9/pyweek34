@@ -37,6 +37,21 @@ class Game(arcade.Window):
 
         # if self.lem_path:
         #     arcade.draw_line_strip(self.lem_path, arcade.color.RED, 2)
+    
+    def on_mouse_press(self, x, y, button, key_modifiers):
+        if button == 1:
+            cart_coords = self.level.map.get_cartesian(x, y)
+
+            new_barrier = arcade.Sprite("assets/tiles/barrier.png")
+
+            new_barrier.set_position((cart_coords[0] * 32) + (new_barrier.width // 2), (cart_coords[1] * 32) + (new_barrier.height // 2))
+
+            self.level.walls.append(new_barrier)
+
+            self.lem_path = self.level.get_path_to_endpoint(Lemming(self))
+
+            for lemming in self.lemmings:
+                lemming.set_path(self.lem_path)
 
     def on_update(self, delta_time: float):
         if self.lem_count < 100 and self.lem_time > 0.2:
@@ -52,6 +67,6 @@ class Game(arcade.Window):
             self.lem_time += delta_time
 
         self.lemmings.update()
-        self.lemmings.update_animation(delta_time)   
+        self.lemmings.update_animation(delta_time)
 
         self.level.update(delta_time, self.lemmings)
