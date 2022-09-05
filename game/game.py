@@ -17,6 +17,7 @@ class Game(arcade.Window):
 
         self.update_path = False
         self.lem_time = 0
+        self.lem_count = 0
 
     def setup(self):
 
@@ -38,8 +39,7 @@ class Game(arcade.Window):
         #     arcade.draw_line_strip(self.lem_path, arcade.color.RED, 2)
 
     def on_update(self, delta_time: float):
-        print(delta_time)
-        if len(self.lemmings) < 100 and self.lem_time > 0.2:
+        if self.lem_count < 100 and self.lem_time > 0.2:
             new_lem = Lemming(self)
 
             new_lem.set_position(*self.level.start_point)
@@ -47,10 +47,11 @@ class Game(arcade.Window):
 
             self.lemmings.append(new_lem)
             self.lem_time = 0
+            self.lem_count += 1
         else:
             self.lem_time += delta_time
 
         self.lemmings.update()
         self.lemmings.update_animation(delta_time)   
 
-        self.level.update(delta_time)
+        self.level.update(delta_time, self.lemmings)

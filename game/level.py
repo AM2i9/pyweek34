@@ -21,7 +21,14 @@ class Level:
             elif obj.name == "end":
                 self.end_point = obj.shape[0], obj.shape[1]
 
-        self.kill_triggers = self.map.object_lists.get("kill_triggers", [])
+        kill_triggers = self.map.object_lists.get("kill_triggers", [])
+        self.kill_triggers = []
+
+        if kill_triggers:
+            for trigger in kill_triggers:
+                self.kill_triggers.append([
+                    (x, game.GAME_HEIGHT + y) for x, y in trigger.shape
+                ])
 
         self.walls = self.map.sprite_lists.get("walls", arcade.SpriteList())
         self.floor = self.map.sprite_lists.get("floor", arcade.SpriteList())
@@ -32,8 +39,13 @@ class Level:
         self.walls.draw()
         self.decoration.draw()
 
-    def update(self, delta_time: float):
+    def update(self, delta_time: float, lemmings: List[Lemming]):
         self.decoration.update_animation(delta_time)
+
+        for lemming in lemmings:
+            for trigger in self.kill_triggers:
+                if arcade.is_point_in_polygon(lemming.center_x, lemming.center_y, trigger):
+                    lemming.kill()
     
     def get_path_to_endpoint(self, lem):
         return arcade.astar_calculate_path(

@@ -35,7 +35,7 @@
 </data>
  </layer>
  <objectgroup color="#ff0000" id="9" name="kill_triggers">
-  <object id="45" name="electric_water" x="64.5" y="400.5" width="94" height="143.5"/>
+  <object id="45" name="electric_water" x="75.8333" y="413.167" width="78" height="97.5"/>
  </objectgroup>
  <objectgroup color="#aa557f" id="14" name="points">
   <object id="54" name="start" x="129.625" y="-27.375">
