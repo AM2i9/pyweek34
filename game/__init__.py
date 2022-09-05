@@ -2,8 +2,8 @@ import arcade
 
 from game.game import Game
 
-GAME_WIDTH = 720
-GAME_HEIGHT = 840
+GAME_WIDTH = 704
+GAME_HEIGHT = 800
 WINDOW_TITLE = "PyWeek3"
 
 
