@@ -1,0 +1,6 @@
+# Krita temp files
+*.kra~
+*.png~
+
+
+*.tiled-session
