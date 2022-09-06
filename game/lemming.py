@@ -21,7 +21,7 @@ class Lemming(arcade.Sprite):
 
         self.path = None
         self.path_iter = None
-        self._current_path_point = None
+        self.current_path_point = None
 
         self.dest = None
 
@@ -30,20 +30,19 @@ class Lemming(arcade.Sprite):
 
     def set_destination(self, dest: Tuple[int, int]):
         self.dest = dest
-    
+
     def set_path(self, path):
         self.path = path
         next_closest = self.get_path_from_next_closest_point()
         self.path_iter = iter(next_closest)
-        self._current_path_point = next(self.path_iter)
-    
+        self.current_path_point = next(self.path_iter)
+
     def get_path_from_next_closest_point(self):
         cur_min = 1000000000000
         min_index = 0
         for i, point in enumerate(self.path):
             distance = math.sqrt(
-                (self.center_x - point[0]) ** 2
-                + (self.center_y - point[1]) ** 2
+                (self.center_x - point[0]) ** 2 + (self.center_y - point[1]) ** 2
             )
             if distance < cur_min:
                 cur_min = distance
@@ -52,15 +51,15 @@ class Lemming(arcade.Sprite):
         return self.path[min_index:]
 
     def update(self):
-        if self._current_path_point:
+        if self.current_path_point:
             angle = math.atan2(
-                self._current_path_point[1] - self.center_y,
-                self._current_path_point[0] - self.center_x,
+                self.current_path_point[1] - self.center_y,
+                self.current_path_point[0] - self.center_x,
             )
 
             distance = math.sqrt(
-                (self.center_x - self._current_path_point[0]) ** 2
-                + (self.center_y - self._current_path_point[1]) ** 2
+                (self.center_x - self.current_path_point[0]) ** 2
+                + (self.center_y - self.current_path_point[1]) ** 2
             )
 
             speed = min(self.speed, distance)
@@ -69,13 +68,13 @@ class Lemming(arcade.Sprite):
             self.center_y += math.sin(angle) * speed
 
             distance = math.sqrt(
-                (self.center_x - self._current_path_point[0]) ** 2
-                + (self.center_y - self._current_path_point[1]) ** 2
+                (self.center_x - self.current_path_point[0]) ** 2
+                + (self.center_y - self.current_path_point[1]) ** 2
             )
 
             if distance <= self.speed:
-                self._current_path_point = next(self.path_iter, None)
-                if self._current_path_point is None:
+                self.current_path_point = next(self.path_iter, None)
+                if self.current_path_point is None:
                     self.path = None
                     self.path_iter = None
                     self.remove_from_sprite_lists()

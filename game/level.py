@@ -26,9 +26,9 @@ class Level:
 
         if kill_triggers:
             for trigger in kill_triggers:
-                self.kill_triggers.append([
-                    (x, game.GAME_HEIGHT + y) for x, y in trigger.shape
-                ])
+                self.kill_triggers.append(
+                    [(x, game.GAME_HEIGHT + y) for x, y in trigger.shape]
+                )
 
         self.walls = self.map.sprite_lists.get("walls", arcade.SpriteList())
         self.floor = self.map.sprite_lists.get("floor", arcade.SpriteList())
@@ -44,13 +44,20 @@ class Level:
 
         for lemming in lemmings:
             for trigger in self.kill_triggers:
-                if arcade.is_point_in_polygon(lemming.center_x, lemming.center_y, trigger):
+                if arcade.is_point_in_polygon(
+                    lemming.center_x, lemming.center_y, trigger
+                ):
                     lemming.kill()
-    
+
     def get_path_to_endpoint(self, lem):
+        return self.get_path_to_endpoint_from_point(self.start_point, lem)
+
+    def get_path_to_endpoint_from_point(self, point, lem):
         return arcade.astar_calculate_path(
-            self.start_point,
+            point,
             self.end_point,
-            arcade.AStarBarrierList(lem, self.walls, 16, 0, game.GAME_WIDTH, 0, game.GAME_HEIGHT),
-            diagonal_movement=True,
+            arcade.AStarBarrierList(
+                lem, self.walls, 16, 0, game.GAME_WIDTH, 0, game.GAME_HEIGHT
+            ),
+            diagonal_movement=False,
         )
