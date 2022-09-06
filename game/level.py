@@ -33,11 +33,13 @@ class Level:
         self.walls = self.map.sprite_lists.get("walls", arcade.SpriteList())
         self.floor = self.map.sprite_lists.get("floor", arcade.SpriteList())
         self.decoration = self.map.sprite_lists.get("deco", arcade.SpriteList())
+        self.wall_decoration = self.map.sprite_lists.get("wall_deco", arcade.SpriteList())
 
     def draw(self):
         self.floor.draw()
-        self.walls.draw()
         self.decoration.draw()
+        self.walls.draw()
+        self.wall_decoration.draw()
 
     def update(self, delta_time: float, lemmings: List[Lemming]):
         self.decoration.update_animation(delta_time)
