@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.9" tiledversion="1.9.1" name="PySaHQ" tilewidth="64" tileheight="32" tilecount="16" columns="0">
+<tileset version="1.9" tiledversion="1.9.1" name="PySaHQ" tilewidth="192" tileheight="256" tilecount="18" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="10">
   <image width="32" height="32" source="pysahq/pysa_wall_back.png"/>
@@ -48,5 +48,11 @@
  </tile>
  <tile id="32">
   <image width="32" height="32" source="pysahq/dotted_concrete.png"/>
+ </tile>
+ <tile id="33">
+  <image width="32" height="32" source="pysahq/dotted_concrete_dark.png"/>
+ </tile>
+ <tile id="34">
+  <image width="192" height="256" source="pysahq/rocket.png"/>
  </tile>
 </tileset>

@@ -23,7 +23,7 @@ class Game(arcade.Window):
 
         self.lemmings = arcade.SpriteList()
 
-        self.level = Level("assets/levels/pysa_headquarters.tmx")
+        self.level = Level("assets/levels/pysa_headquarters_rocket.tmx")
 
         self.lem_path = self.level.get_path_to_endpoint(Lemming(self))
 
@@ -35,8 +35,10 @@ class Game(arcade.Window):
 
         self.lemmings.draw(pixelated=True)
 
-        if self.lem_path:
-            arcade.draw_line_strip(self.lem_path, arcade.color.RED, 2)
+        self.level.draw_foreground()
+
+        # if self.lem_path:
+        #     arcade.draw_line_strip(self.lem_path, arcade.color.RED, 2)
 
     def on_mouse_press(self, x, y, button, key_modifiers):
         if button == 1:
