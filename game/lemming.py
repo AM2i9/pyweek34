@@ -12,8 +12,33 @@ class Lemming(arcade.Sprite):
         self.game = game
 
         self.textures = arcade.load_textures(
-            "assets/images/tiny-astro-sheet-alpha.png", [(0, 0, 8, 8)]
+            "assets/images/tiny-astro-sheet-alpha.png",
+            [
+                (0, 0, 8, 8),  # Top row
+                (8, 0, 8, 8),
+                (16, 0, 8, 8),
+                (0, 8, 8, 8),  # Middle row
+                (8, 8, 8, 8),
+                (16, 8, 8, 8),
+                (0, 16, 8, 8),  # Bottom row
+                (8, 16, 8, 8),
+                (16, 16, 8, 8),
+            ],
         )
+
+        self.animations = {
+            "front": self.textures[:3],
+            "left": self.textures[3:6],
+            "right": [ # Generate right-facing textures
+                arcade.Texture(f"right_{i}", t.image.transpose(0))
+                for i, t in enumerate(self.textures[3:6])
+            ],
+            "back": self.textures[6:],
+        }
+
+        self.current_animation = None
+        self.current_texture = 0
+
         self.texture = self.textures[0]
 
         self.speed = 2
@@ -26,7 +51,26 @@ class Lemming(arcade.Sprite):
         self.dest = None
 
     def update_animation(self, delta_time: float):
-        self.texture = self.textures[0]
+
+        int_x = int(self.change_x)
+        int_y = int(self.change_y)
+
+        if int_x > 0:
+            self.current_animation = "right"
+        elif int_x < 0:
+            self.current_animation = "left"
+
+        if int_y > 0:
+            self.current_animation = "back"
+        elif int_y < 0:
+            self.current_animation = "front"
+
+        self.texture = self.animations[self.current_animation][
+            self.current_texture // 6
+        ]
+        self.current_texture += 1
+        if self.current_texture > 12:
+            self.current_texture = 0
 
     def set_destination(self, dest: Tuple[int, int]):
         self.dest = dest
@@ -64,8 +108,11 @@ class Lemming(arcade.Sprite):
 
             speed = min(self.speed, distance)
 
-            self.center_x += math.cos(angle) * speed
-            self.center_y += math.sin(angle) * speed
+            self.change_x = math.cos(angle) * speed
+            self.change_y = math.sin(angle) * speed
+
+            self.center_x += self.change_x
+            self.center_y += self.change_y
 
             distance = math.sqrt(
                 (self.center_x - self.current_path_point[0]) ** 2
